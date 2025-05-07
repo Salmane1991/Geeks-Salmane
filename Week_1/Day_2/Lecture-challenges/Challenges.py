@@ -1,4 +1,3 @@
-""""
 # Challenge 1
 sample_dict = { 
    "class":{ 
@@ -34,7 +33,6 @@ for key in keys_to_remove:
 print(sample_dict.items())
  
 
-"""
 #Challenge 3
 
 my_dictionary={}
