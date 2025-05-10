@@ -39,12 +39,31 @@ class pagination:
       self.go_to_page(self.current_idx-1)
       return self
     
+  def __str__(self):
+    visible_items = self.get_visible_items()
+    return "\n".join(visible_items)
                        
-      
-    
-      
-      
-   
+alphabetList = list("abcdefghijklmnopqrstuvwxyz")
+p = pagination(alphabetList, 4)
+
+print(p.get_visible_items())
+# ['a', 'b', 'c', 'd']
+
+p.next_page()
+print(p.get_visible_items())
+# ['e', 'f', 'g', 'h']
+
+p.last_page()
+print(p.get_visible_items())
+# ['y', 'z']
+
+p.go_to_page(10)
+print(p.current_idx + 1)
+# Output: 7
+
+p.go_to_page(0)
+# Raises ValueError
+
       
      
           
