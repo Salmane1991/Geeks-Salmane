@@ -1,4 +1,5 @@
 import math
+
 class pagination:
   def __init__(self,items=None,page_size=10):
        if items is None:
@@ -9,7 +10,38 @@ class pagination:
        self.page_size=page_size  
        self.current_idx = 0
        self.total_pages = math.ceil(len(self.list_items) / self.page_size)
+       
+  def get_visible_items(self):
+    start= self.current_idx*self.page_size
+    end=start+self.page_size
+    return self.list_items[start:end]
       
+  def go_to_page(self, page_num):
+    if page_num < 1 or page_num > self.total_pages:
+        raise ValueError("Page is out of range")    
+    self.current_idx = page_num - 1
+  
+  def first_page(self):
+    self.go_to_page(1)
+    return self
+  
+  def last_page(self):
+    self.go_to_page(self.total_pages)
+    return self
+  
+  def next_page(self):
+    if self.current_idx < self.total_pages-1:
+      self.go_to_page(self.current_idx+1)
+      return self
+    
+  def previous_page(self):
+    if self.current_idx> 0:
+      self.go_to_page(self.current_idx-1)
+      return self
+    
+                       
+      
+    
       
       
    
