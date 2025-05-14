@@ -41,21 +41,10 @@ SELECT film_id,
 FROM film
 ORDER BY rental_rate ASC
 LIMIT 10;
-SELECT film_id,
-    title,
-    rental_rate
+SELECT *
 FROM film
-WHERE rental_rate > (
-        SELECT MAX(rental_rate)
-        FROM (
-                SELECT rental_rate
-                FROM film
-                ORDER BY rental_rate ASC
-                LIMIT 10
-            ) AS first_ten
-    )
-ORDER BY rental_rate ASC
-LIMIT 10;
+ORDER BY rental_rate ASC OFFSET 10 ROWS
+FETCH FIRST 10 ROWS ONLY;
 SELECT customer.first_name,
     customer.last_name,
     payment.amount,
