@@ -1,6 +1,6 @@
 SELECT *
 FROM customer;
-SELECT first_name || ' ' || last_name as full_name
+SELECT first_name || ' ' || last_name AS full_name
 FROM customer;
 SELECT DISTINCT create_date
 FROM customer;
@@ -14,7 +14,6 @@ SELECT film_id,
     rental_rate
 FROM film
 ORDER BY rental_rate ASC;
-.
 SELECT address,
     phone
 FROM address
@@ -28,14 +27,14 @@ SELECT film_id,
     length,
     rental_rate
 FROM film
-WHERE title = 'Your Favorite Movie';
+WHERE title = 'Titanic';
 SELECT film_id,
     title,
     description,
     length,
     rental_rate
 FROM film
-WHERE title LIKE 'Yo%';
+WHERE title LIKE 'Ti%';
 SELECT film_id,
     title,
     rental_rate
