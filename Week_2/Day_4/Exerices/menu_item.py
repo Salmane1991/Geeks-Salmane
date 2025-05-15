@@ -56,3 +56,8 @@ item1.update('NoGluten-Pizza', 60)
 # item1.save()
 # item2.save()
 # item3.save()
+
+item = MenuItem('Burger', 35)
+# item.save()
+# item.delete()
+item.update('Veggie Burger', 37)
