@@ -26,13 +26,12 @@ class MenuManager:
 # search = MenuManager()
 # print(search.get_by_name('Tuna'))
 
-
     def all_items(self):
         cursor = connection.cursor()
         query = f"SELECT * FROM Menu_items"
         cursor.execute(query)
         result = cursor.fetchall()
-        print(result)
+        return (result)
 
 
 # all = MenuManager()
