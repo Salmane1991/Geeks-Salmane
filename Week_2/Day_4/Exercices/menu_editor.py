@@ -51,12 +51,12 @@ def add_item_to_menu():
 
 def remove_item_from_menu():
     item_name = input("Enter the item name you want to delete: ")
-    item = MenuItem(item_name, 0)
-    try:
+    if manager.get_by_name(item_name):
+        item = MenuItem(item_name, 0)
         item.delete()
-        print("Item was deleted successfully")
-    except Exception as e:
-        print("Item was not deleted. Error:", e)
+        print("Item was deleted successfully.")
+    else:
+        print("Item not found in the menu.")
 
 
 def update_item_from_menu():

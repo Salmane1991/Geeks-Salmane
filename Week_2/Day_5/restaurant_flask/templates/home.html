@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Welcome to the Restaurant!</h1>
+    <p>This is your Flask-powered menu system.</p> <br><br>
+
+    <a href="{{ url_for('menu') }}">View Menu</a><br>
+    <a href="{{ url_for('add') }}">Add Item</a><br>
+    <a href="{{ url_for('update') }}">Update Item</a><br>
+    <a href="{{ url_for('delete') }}">Delete Item</a><br>
+    <p><a href="{{ url_for('home') }}">🔙 Back to Home</a></p>
+
+</body>
+
+</html>
