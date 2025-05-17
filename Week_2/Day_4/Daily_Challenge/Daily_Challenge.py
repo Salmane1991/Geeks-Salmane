@@ -30,10 +30,11 @@ for country in random_countries:
     subregion = country.get('subregion', 'Unknown')
     population = country.get('population', 0)
 
+    print("Trying to insert:", name, capital)
     cur.execute("""
-        INSERT INTO countries (name, capital, flag, subregion, population)
-        VALUES (%s, %s, %s, %s, %s)
-    """, (name, capital, flag, subregion, population))
+    INSERT INTO countries_data (name, capital, flag, subregion, population)
+    VALUES (%s, %s, %s, %s, %s)
+""", (name, capital, flag, subregion, population))
 
 conn.commit()
 cur.close()
