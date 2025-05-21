@@ -30,16 +30,3 @@ if (wordNot !== -1 && wordBad !== -1 && wordBad > wordNot) {
 
 
 
-const pattern = {
-    'one': "*",
-    'two': "**",
-    'three': "***",
-    'Four': "****",
-    'Five': "*****",
-    'Six': "******"
-
-}
-
-for (key in pattern) {
-    console.log(pattern[key])
-}
