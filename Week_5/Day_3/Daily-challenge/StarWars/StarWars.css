@@ -1,0 +1,67 @@
+body {
+  background-color: black;
+  background-image: url("https://i.giphy.com/media/TxVVB6PfWMjE4/200.webp");
+  background-repeat: repeat;
+  font-family: "Helvetica Neue", sans-serif;
+  color: yellow;
+  text-align: center;
+  margin: 0;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 60px;
+  color: yellow;
+  text-shadow: 2px 2px 8px #000;
+  margin-top: 10px;
+}
+
+#charInfo {
+  border: 3px solid yellow;
+  border-radius: 15px;
+  width: 600px;
+  height: auto;
+  padding: 25px;
+  margin: 20px auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#charInfo h1 {
+  color: white;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+#charInfo p {
+  color: white;
+  font-size: 20px;
+  margin: 8px 0;
+}
+
+button {
+  margin-top: 20px;
+  border: 3px solid yellow;
+  border-radius: 10px;
+  width: 180px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: black;
+  color: yellow;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background-color: yellow;
+  color: black;
+}
+
+.loader {
+  font-size: 40px;
+  color: white;
+  margin-top: 30px;
+}
