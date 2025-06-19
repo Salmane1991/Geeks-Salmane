@@ -1,0 +1,10 @@
+.carousel-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.carousel .slide img {
+  max-height: 400px;
+  object-fit: cover;
+  width: 100%;
+}
