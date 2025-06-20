@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  text-align: center;
+  margin-top: 50px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.language-box {
+  background-color: #ffe4b5;
+  padding: 20px;
+  margin: 15px auto;
+  border: 1px solid black;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+button {
+  background: none;
+  border: none;
+  color: green;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  text-decoration: underline;
+}
