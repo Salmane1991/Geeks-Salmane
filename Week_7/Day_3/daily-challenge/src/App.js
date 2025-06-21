@@ -1,146 +1,165 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      firstName: "",
-      lastName: "",
-      age: "",
-      gender: "",
-      destination: "",
-      dietaryRestrictions: {
-        nutsFree: false,
-        lactoseFree: false,
-        vegan: false,
-      },
-    };
-  }
+function App() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    age: "",
+    gender: "",
+    destination: "",
+    nutsFree: false,
+    lactoseFree: false,
+    vegan: false,
+  });
 
-  handleChange = (event) => {
+  function handleChange(event) {
     const { name, value, type, checked } = event.target;
-
-    if (type === "checkbox") {
-      this.setState((prevState) => ({
-        dietaryRestrictions: {
-          ...prevState.dietaryRestrictions,
-          [name]: checked,
-        },
-      }));
-    } else {
-      this.setState({
-        [name]: value,
-      });
-    }
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    const {
-      firstName,
-      lastName,
-      age,
-      gender,
-      destination,
-      dietaryRestrictions,
-    } = this.state;
-
-    const params = new URLSearchParams({
-      firstName,
-      lastName,
-      age,
-      gender,
-      destination,
-      ...(dietaryRestrictions.lactoseFree && { lactoseFree: "on" }),
-      ...(dietaryRestrictions.nutsFree && { nutsFree: "on" }),
-      ...(dietaryRestrictions.vegan && { vegan: "on" }),
-    });
-
-    window.location.href = "http://localhost:3000/?" + params.toString();
-  };
-
-  render() {
-    return (
-      <div className="container">
-        <h1>Travel Form</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            name="firstName"
-            placeholder="First Name"
-            onChange={this.handleChange}
-          />
-          <input
-            name="lastName"
-            placeholder="Last Name"
-            onChange={this.handleChange}
-          />
-          <input name="age" placeholder="Age" onChange={this.handleChange} />
-
-          <div className="gender-section">
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="male"
-                onChange={this.handleChange}
-              />{" "}
-              Male
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="female"
-                onChange={this.handleChange}
-              />{" "}
-              Female
-            </label>
-          </div>
-
-          <select name="destination" onChange={this.handleChange}>
-            <option value="">-- Choose Destination --</option>
-            <option value="Japan">Japan</option>
-            <option value="Brazil">Brazil</option>
-            <option value="Canada">Canada</option>
-          </select>
-
-          <div className="checkboxes">
-            <label>
-              <input
-                type="checkbox"
-                name="nutsFree"
-                checked={this.state.dietaryRestrictions.nutsFree}
-                onChange={this.handleChange}
-              />{" "}
-              Nuts Free
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="lactoseFree"
-                checked={this.state.dietaryRestrictions.lactoseFree}
-                onChange={this.handleChange}
-              />{" "}
-              Lactose Free
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="vegan"
-                checked={this.state.dietaryRestrictions.vegan}
-                onChange={this.handleChange}
-              />{" "}
-              Vegan
-            </label>
-          </div>
-
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    );
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const params = new URLSearchParams();
+
+    for (let key in formData) {
+      const value = formData[key];
+      if (typeof value === "boolean") {
+        if (value) {
+          params.append(key, "on");
+        }
+      } else {
+        params.append(key, value);
+      }
+    }
+
+    window.location.href = `http://localhost:3000/?${params.toString()}`;
+  }
+
+  return (
+    <div>
+      <form className="form" onSubmit={handleSubmit}>
+        <h1>Sample form</h1>
+
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          value={formData.lastName}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="age"
+          placeholder="Age"
+          value={formData.age}
+          onChange={handleChange}
+        />
+
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            checked={formData.gender === "male"}
+            onChange={handleChange}
+          />
+          Male
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            checked={formData.gender === "female"}
+            onChange={handleChange}
+          />
+          Female
+        </label>
+
+        <br />
+        <label>Select your destination</label>
+        <select
+          name="destination"
+          value={formData.destination}
+          onChange={handleChange}
+        >
+          <option>-- Please Choose a destination --</option>
+          <option value="Germany">Germany</option>
+          <option value="Norway">Norway</option>
+          <option value="Japan">Japan</option>
+        </select>
+
+        <br />
+        <label>
+          <input
+            type="checkbox"
+            name="nutsFree"
+            checked={formData.nutsFree}
+            onChange={handleChange}
+          />
+          Nuts free
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            name="lactoseFree"
+            checked={formData.lactoseFree}
+            onChange={handleChange}
+          />
+          Lactose free
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            name="vegan"
+            checked={formData.vegan}
+            onChange={handleChange}
+          />
+          Vegan
+        </label>
+
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+
+      <div className="output">
+        <h2>Entered information:</h2>
+        <p>
+          <em>Your name:</em>{" "}
+          <span>
+            {formData.firstName} {formData.lastName}
+          </span>
+        </p>
+        <p>
+          <em>Your age:</em> <span>{formData.age}</span>
+        </p>
+        <p>
+          <em>Your gender:</em> <span>{formData.gender}</span>
+        </p>
+        <p>
+          <em>Your destination:</em> <span>{formData.destination}</span>
+        </p>
+        <p>
+          <em>Your dietary restrictions:</em>
+        </p>
+        <p>**Nuts free : {formData.nutsFree ? "Yes" : "No"}</p>
+        <p>**Lactose free : {formData.lactoseFree ? "Yes" : "No"}</p>
+        <p>**Vegan meal : {formData.vegan ? "Yes" : "No"}</p>
+      </div>
+    </div>
+  );
 }
 
 export default App;
