@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function FormInput() {
   const [inputValue, setInputValue] = useState("");
   const [serverMessage, setServerMessage] = useState("");
+  const [result, setResult] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
