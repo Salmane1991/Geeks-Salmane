@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { ageUpAsync, ageDownAsync } from '../features/age/ageSlice';
+import { ageUpAsync, ageDownAsync } from '../features/ageSlice';
 
-const AgeControls = () => {
+function AgeControls() {
   const dispatch = useDispatch();
 
   return (
@@ -11,6 +11,6 @@ const AgeControls = () => {
       <button onClick={() => dispatch(ageDownAsync())}>Age Down</button>
     </div>
   );
-};
+}
 
 export default AgeControls;

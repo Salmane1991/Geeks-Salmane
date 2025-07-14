@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import ageReducer from '../features/age/ageSlice';
+import userReducer from './userSlice';
 
 const store = configureStore({
   reducer: {
-    age: ageReducer,
-  },
+    user: userReducer
+  }
 });
 
 export default store;

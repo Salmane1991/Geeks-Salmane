@@ -1,30 +1,25 @@
-// src/components/UserData.js
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser } from '../features/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchUser } from '../features/userThunk';
 
-const UserData = () => {
+function UserData() {
   const dispatch = useDispatch();
-  const { userData, loading, error } = useSelector((state) => state.user);
+  const user = useSelector(state => state.user.data);
+  const error = useSelector(state => state.user.error);
 
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
 
+  if (error) return <p>{error}</p>;
+  if (!user) return <p>Loading...</p>;
+
   return (
     <div>
-      <h2>User Info</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {userData && (
-        <div>
-          <p><strong>Name:</strong> {userData.name}</p>
-          <p><strong>Email:</strong> {userData.email}</p>
-          <p><strong>Phone:</strong> {userData.phone}</p>
-        </div>
-      )}
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
     </div>
   );
-};
+}
 
 export default UserData;
